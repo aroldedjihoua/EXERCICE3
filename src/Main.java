@@ -5,34 +5,45 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
+        // Variable pour stocker le nombre total de mots
         int totalWords = 0;
 
         try {
-            // Chemin du fichier (à adapter)
+            // Création d'un objet File représentant le fichier à lire
+            //  Le fichier doit se trouver dans le bon dossier (racine du projet ou chemin absolu)
             File file = new File("testExercice3.txt");
+
+            // Scanner pour lire le contenu du fichier
             Scanner scanner = new Scanner(file);
 
-            // Lire ligne par ligne
+            // Boucle pour lire le fichier ligne par ligne
             while (scanner.hasNextLine()) {
+
+                // Lire une ligne complète
                 String line = scanner.nextLine();
 
-                // Ignorer les lignes vides
+                // Supprimer les espaces inutiles au début et à la fin
+                // et vérifier si la ligne n'est pas vide
                 if (!line.trim().isEmpty()) {
 
-                    // Séparer par espace
+                    // Découper la ligne en mots en utilisant l'espace comme séparateur
+                    // Exemple : "Bonjour tout le monde" → ["Bonjour", "tout", "le", "monde"]
                     String[] words = line.trim().split(" ");
 
-                    // Ajouter le nombre de mots
+                    // Ajouter le nombre de mots trouvés dans cette ligne
                     totalWords += words.length;
                 }
             }
 
+            // Fermer le scanner pour libérer les ressources
             scanner.close();
 
-            // Résultat final
+            // Afficher le résultat final
             System.out.println("Nombre total de mots : " + totalWords);
 
         } catch (FileNotFoundException e) {
+
+            // Ce bloc s'exécute si le fichier n'est pas trouvé
             System.out.println("Fichier non trouvé !");
         }
     }
